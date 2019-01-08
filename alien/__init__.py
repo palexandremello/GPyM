@@ -11,14 +11,15 @@
 
 
 import  os,sys
+sys.path.append('alien/')
 from    optparse        import OptionParser
-from    LOGGER          import *
+from    GPyM.alien.LOGGER          import *
 
 
 @ETA
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 
