@@ -12,25 +12,25 @@
 
 import  os, sys, importlib
 import  time
-import  cPickle         as pickle
+import  pickle
 from    optparse        import OptionParser
-from    ConfigParser    import SafeConfigParser
+from    configparser    import SafeConfigParser
 
 
 from    numpy           import empty
 
-from    alien.dtrange               import dtrange
+from    GPyM.alien.dtRange               import dtrange
 
-from    alien.GridCoordinates       import GridCoordinates
+from    GPyM.alien.GridCoordinates       import GridCoordinates
 
 #from    alien.read_hdf4             import read_hdf4
 #from    alien.read_hdf5             import read_hdf5
 
-from    alien.TimeSeries            import bin_bytbound
+from    GPyM.alien.TimeSeries            import bin_bytbound
 
-from    gpm_data                    import GPM_data
-from    search_granules             import SearchGranules
-from    granule2map                 import granule2map
+from    GPyM.gpm_data                    import GPM_data
+from    GPyM.search_granules             import SearchGranules
+from    GPyM.granule2map                 import granule2map
 
 
 
@@ -70,8 +70,8 @@ class GPM( SearchGranules ):
 
         fnName          = fnPath.split('.')[-1]
         modPath         = '.'.join( fnPath.split('.')[:-1] )
-
-        self.func_read  = getattr( importlib.import_module( modPath ), fnName )
+        
+        self.func_read  = getattr( importlib.import_module( modPath ), 'read_hdf5' )
 
         '''
         self.cacheDir   = os.path.join( self.dataDir,
@@ -123,7 +123,7 @@ class GPM( SearchGranules ):
         Granule     = self.search_granules( srcDir, sDTime, eDTime, BBox )
 
         if len(Granule) == 0:
-            print '! Warning ! no data extracted'
+            print ('! Warning ! no data extracted')
             return None
 
         outSize     = sum( [ len(gra[2]) for gra in Granule ] ), Granule[0][2].shape[1]
