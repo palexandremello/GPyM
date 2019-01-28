@@ -19,11 +19,9 @@ GPyM [dʒi:pai:ɜm / gee pai em] is a GPM (Global Precipitation Mission) Python 
 
 ### Download and Install Package
 ```bash
-$ git clone git@github.com:kimlab/GPyM.git
+$ git https://github.com/palexandremello/GPyM.git
 
 $ cd GPyM
-
-$ vi config # to config environment including GPM data directory
 
 $ python setup.py install
 ```
